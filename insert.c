@@ -3,6 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "insert.h"
+#include "struct.h"
+#include "assign_roll.h"
+void save_list_to_file(struct student *head);
 struct student *insert_student(struct student *head, char name[], char fname[], char gender[], char course[], char bloodgroup[], int sem, long long contactno) // for inserting data;
 
 {
@@ -37,6 +40,7 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
         ptr->rolln = rn;
         head = ptr;
         printf(" >> Student is successfully added.\n");
+        save_list_to_file(head);
 
         return head;
     }
@@ -50,14 +54,10 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
             ptr->prev = NULL;
             head = ptr;
             roll = head;
-            while (roll != NULL)
-            {
-                roll->rolln = rn;
-                rn++;
-                roll = roll->next;
-            }
+            assign_roll(head);
 
             printf(" >> Student is successfully added.\n");
+            save_list_to_file(head);
 
             return head;
         }
@@ -66,13 +66,10 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
             ptr->next = NULL;
             ptr->prev = head;
             head->next = ptr;
-            while (roll != NULL)
-            {
-                roll->rolln = rn;
-                rn++;
-                roll = roll->next;
-            }
+            assign_roll(head);
+
             printf(" >> Student is successfully added.\n");
+            save_list_to_file(head);
 
             return head;
         }
@@ -88,13 +85,9 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
             ptr->prev = NULL;
             head = ptr;
             roll = head;
-            while (roll != NULL)
-            {
-                roll->rolln = rn;
-                rn++;
-                roll = roll->next;
-            }
+            assign_roll(head);
             printf(" >> Student is successfully added.\n");
+            save_list_to_file(head);
 
             return head;
         }
@@ -109,13 +102,9 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
                     ptr->prev = temp->prev;
                     temp->prev->next = ptr;
                     temp->prev = ptr;
-                    while (roll != NULL)
-                    {
-                        roll->rolln = rn;
-                        rn++;
-                        roll = roll->next;
-                    }
+                    assign_roll(head);
                     printf(" >> Student is successfully added.\n");
+                    save_list_to_file(head);
 
                     return head;
                 }
@@ -123,22 +112,43 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
                 temp = temp->next; // iammweaverfitness
             }
         }
-
         if (key == -1) // key is used to find that we have find the bigger node or not
         {
 
             ptr->next = NULL;
             ptr->prev = second_last;
             second_last->next = ptr;
-            while (roll != NULL)
-            {
-                roll->rolln = rn;
-                rn++;
-                roll = roll->next;
-            }
+            assign_roll(head);
             printf(" >> Student is successfully added.\n");
+            save_list_to_file(head);
             return head;
         }
     }
     return head;
+}
+void save_list_to_file(struct student *head)
+{
+    FILE *fp = fopen("students.txt", "w"); // overwrite file
+    if (fp != NULL)
+    {
+        struct student *temp = head;
+        while (temp != NULL)
+        {
+           fprintf(fp, "Roll No: %d | Name: %s | FName: %s | Gender: %s | Course: %s | BloodGroup: %s | Sem: %d | Contact: %lld\n",
+                    temp->rolln,
+                    temp->name,
+                    temp->fname,
+                    temp->gender,
+                    temp->course,
+                    temp->bloodgroup,
+                    temp->sem,
+                    temp->contactno);
+            temp = temp->next;
+        }
+        fclose(fp);
+    }
+    else
+    {
+        perror("Error opening file");
+    }
 }

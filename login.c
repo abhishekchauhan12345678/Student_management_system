@@ -22,13 +22,16 @@ int login() // for login
 
         // login
         if (strcmp(username, "admin") == 0 && strcmp(password, "abhi") == 0)
-        {
-            printf(" >> successfully logged in \n");
+        {   printf("*-------*-----------*----------*\n");
+            printf(" >> successfully logged in << \n");
+            printf("*-------*-----------*----------*\n");
             return 0;
         }
         else
-        {
+        {   printf("*-------------*-------------*--------------*\n");
             printf(">> invalid username or password try again...\n");
+            printf("*-------------*-------------*--------------*\n");
+
         }
     }
 }

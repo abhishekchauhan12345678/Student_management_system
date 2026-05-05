@@ -1,0 +1,1 @@
+gcc main.c insert.c login.c display.c assign_roll.c del_student.c -o project

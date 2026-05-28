@@ -5,7 +5,7 @@
 #include "del_student.h"
 #include "assign_roll.h"
 #include "display.h"
-
+#include "database.h"
 
 struct student *del_student_byroll(struct student *head, int rollno)
 {
@@ -13,14 +13,17 @@ struct student *del_student_byroll(struct student *head, int rollno)
     ptr = head;
     if (ptr == NULL)   // for no element present
     {  
-        printf("THERE IS NO STUDENT ENROLLED TILL NOW");   
+        printf("THERE IS NO STUDENT ENROLLED TILL NOW");
+        save_list_to_file(head);
         return head;
     }
     else if(ptr->rolln==rollno && ptr->next==NULL){
         free(ptr);
+        head=NULL;
         printf("*---------*------------*-----------*\n");
         printf(" >>Student successfully deleted <<\n");
         printf("*---------*------------*-----------*\n");
+        save_list_to_file(head);
         return NULL;
     }
     else
@@ -34,7 +37,7 @@ struct student *del_student_byroll(struct student *head, int rollno)
                 free(ptr); 
                 break;
             }
-            else if (ptr->rolln == rollno && ptr->next == NULL)
+            else if (ptr->rolln == rollno && ptr->next == NULL) //for last element
             {
                 ptr->prev->next = NULL;
                 free(ptr);
@@ -59,9 +62,12 @@ struct student *del_student_byroll(struct student *head, int rollno)
         ptr=head;
         assign_roll(head);
         display_all_data(head);
+        save_list_to_file(head);
         printf("*--------------------------------*\n");
         printf(" >>Student successfully deleted <<\n");
         printf("*--------------------------------\n");
+        save_list_to_file(head);
+
         return head;
     }
 }

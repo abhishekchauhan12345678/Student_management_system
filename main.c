@@ -8,9 +8,9 @@
 #include "del_student.h"
 #include "attendence.h"
 #include "load_student.h"
-// for deleting student info;
-// struct student *del_student_byname(struct student *head, char name[]);
-struct student *load_list_from_file();
+#include "marks.h"
+#include "database.h"
+#include "reportcard.h"
 int main()
 {
 
@@ -35,14 +35,16 @@ int main()
         char bloodgroup[10];
         do
         {
+            printf("********************************\n");
+            printf("* Press 1 for Add student.     *\n");
+            printf("* press 2 for Delete student.  *\n");
+            printf("* press 3 for attendence mark. *\n");
+            printf("* press 4 for entering marks   *\n");
+            printf("* press 5 for update marks     *\n");
+            printf("* press 6 for report card.     *\n");
+            printf("* press 7 for show all data    *\n");
+            printf("********************************\n");
 
-            printf("Press 1 for Add student.\n");
-            printf("press 2 for Delete student.\n");
-            printf("press 3 for attendence mark.\n");
-            printf("press 4 for attendence view");
-            printf("press 5 for entering marks");
-            printf("press 6 for update marks");
-            printf("press 5 for all student data.\n");
             printf("Choose : ");
             scanf("%d", &f);
             getchar();
@@ -88,7 +90,7 @@ int main()
                         getchar();
                     }
                 }
-                else 
+                else
                 {
                     printf("Cancelled adding student.\n");
                 }
@@ -101,21 +103,40 @@ int main()
                 scanf("%d", &roll);
                 getchar();
                 head = del_student_byroll(head, roll);
+                save_list_to_file(head);
                 break;
             }
             case 3:
             {
-              attendence(head);
-                
+                attendence(head);
+                save_list_to_file(head);
                 break;
             }
+
             case 4:
-            {
-                
-            }
-            case 10:
-                display_all_data(head);
+                enter_marks(head);
+                save_list_to_file(head);
                 break;
+            case 5:
+                update_marks(head);
+                save_list_to_file(head);
+                break;
+              
+            case 6:
+            {
+                int roll;
+                printf("Enter roll number to generate report card: ");
+                scanf("%d", &roll);
+                getchar();
+                generate_report_card(head, roll);
+                break;
+            }
+            case 7:
+                display_all_data(head);
+                save_list_to_file(head);
+                break;
+          
+
             default:
                 break;
             }

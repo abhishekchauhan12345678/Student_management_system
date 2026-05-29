@@ -31,7 +31,9 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
 
     ptr->sem = sem;
     ptr->contactno = contactno;
-
+    ptr->marks1 = 0;
+    ptr->marks2 = 0;
+    ptr->marks3 = 0;
     temp = head;
     if (head == NULL)
     {
@@ -126,4 +128,3 @@ struct student *insert_student(struct student *head, char name[], char fname[], 
     }
     return head;
 }
-

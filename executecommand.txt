@@ -1,1 +1,1 @@
-gcc main.c insert.c login.c display.c assign_roll.c del_student.c database.c attendence.c -o project
+gcc main.c insert.c login.c display.c assign_roll.c del_student.c database.c load_Student.c mark.c attendence.c reportcard.c -o project

@@ -10,6 +10,9 @@ struct student {
     char bloodgroup[10];
     int sem;
     long long contactno;
+    int marks1;
+    int marks2;
+    int marks3;
     struct student *next;
     struct student *prev;
 };

@@ -1,3 +1,3 @@
-Roll No: 1 | Name: abhi    | FName: xyz    | Gender: male    | Course: mca    | BloodGroup: b-    | Sem: 2 | Contact: 87888
-Roll No: 2 | Name: kajal | FName: pink | Gender: male | Course: mca | BloodGroup: b | Sem: 2 | Contact: 8791226331
-Roll No: 3 | Name: kashubaby  | FName: bhumeshwar  | Gender: male  | Course: mca  | BloodGroup: b  | Sem: 2 | Contact: 854545
+Roll No: 1 | Name: abhi   | FName: ts   | Gender: male   | Course: mca   | BloodGroup: b   | Sem: 2 | Contact: 8791226331 | Marks1: 156 | Marks2: 15 | Marks3: 11
+Roll No: 2 | Name: kashu   | FName: bhumeshwar   | Gender: female   | Course: mca   | BloodGroup: b-   | Sem: 2 | Contact: 965 | Marks1: 0 | Marks2: 0 | Marks3: 0
+Roll No: 3 | Name: rajdeep    | FName: fff   | Gender: sfs   | Course: s   | BloodGroup: sf   | Sem: 8 | Contact: 9 | Marks1: 0 | Marks2: 0 | Marks3: 0
